@@ -3,14 +3,14 @@
     <#if section = "header">
         ${msg("loginAccountTitle")}
     <#elseif section = "form">
-        <form id="kc-form-login" action="${url.loginAction}" method="post">
-            <div class="form-group">
-                <label for="otp">Введите OTP</label>
-                <input type="text" id="otp" name="otp" class="form-control" />
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary btn-lg">Подтвердить</button>
-            </div>
+        <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
+            <label>
+                <input name="username" placeholder="login">
+            </label>
+            <label>
+                <input name="password" type="password" placeholder="password">
+            </label>
+            <input type="submit">
         </form>
     <#elseif section = "info" >
     <#elseif section = "socialProviders" >

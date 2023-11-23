@@ -1,13 +1,17 @@
 package ru.gmrx;
 
+import org.keycloak.Config;
 import org.keycloak.authentication.Authenticator;
 import org.keycloak.authentication.AuthenticatorFactory;
 import org.keycloak.models.AuthenticationExecutionModel;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
 import org.keycloak.provider.ProviderConfigProperty;
-import org.keycloak.Config;
+
+import java.util.Collections;
 import java.util.List;
+
+import static org.keycloak.provider.ProviderConfigProperty.STRING_TYPE;
 
 public class CustomOtpSpiFactory implements AuthenticatorFactory {
 
@@ -37,7 +41,7 @@ public class CustomOtpSpiFactory implements AuthenticatorFactory {
 
     @Override
     public boolean isConfigurable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -56,7 +60,13 @@ public class CustomOtpSpiFactory implements AuthenticatorFactory {
 
     @Override
     public List<ProviderConfigProperty> getConfigProperties() {
-        return null;
+        ProviderConfigProperty name = new ProviderConfigProperty();
+        name.setType(STRING_TYPE);
+        name.setName("name");
+        name.setLabel("Название");
+        name.setHelpText("Описание");
+
+        return Collections.singletonList(name);
     }
 
     @Override
